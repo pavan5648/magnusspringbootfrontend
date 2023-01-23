@@ -1,0 +1,13 @@
+<!-- <router-outlet></router-outlet> -->
+
+<ngx-ui-loader
+  fgsColor="#a9b2e2"
+  pbColor="#a9b2e2"
+  text="Please wait.."
+  textColor="#a9b2e2"
+></ngx-ui-loader>
+
+<div ngxUiLoaderBlurred (blur)="6">
+  <!-- dynamic content -->
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,148 @@
+<mat-card>
+
+    <h3 class="bold">Employee Details</h3>
+
+    <!-- {{ employee | json }}  -->
+
+    <mat-divider></mat-divider>
+
+    <!-- update form -->
+    <form (submit)="updateData()">
+        <div class="form-row mt40">
+            <div class="form-group col-md-4 bold">
+                <label for="firstName">Frist Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                    [(ngModel)]="emp.firstName">
+            </div>
+            <div class="form-group col-md-4 bold">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name"
+                    [(ngModel)]="emp.lastName ">
+            </div>
+            <div class="form-group col-md-4 bold">
+                <label for="inputEmail4 bold">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email"
+                    [(ngModel)]="emp.email">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4 bold">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="number" class="form-control" id="mobileNumber" name="mobile" placeholder="Mobile Number"
+                    [(ngModel)]="emp.mobile ">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dateOfBirth" placeholder="dd/mm/yyyy"
+                    [(ngModel)]="emp.dateOfBirth ">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="gender" class="mr10" style="margin-top: 35px;"> Gender : </label>
+                <div class="form-check form-check-inline" id="gender">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male"
+                        [(ngModel)]="emp.gender">
+                    <label class="form-check-label" for="inlineRadio1" style="margin-top: 5px;">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female"
+                        [(ngModel)]="emp.gender ">
+                    <label class="form-check-label" for="inlineRadio2" style="margin-top: 5px;">Female</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <!-- <input type="textarea" class="form-control" id="inputAddress" placeholder="1234 Main St"> -->
+            <textarea type="textarea" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St"
+                [(ngModel)]="emp.address "></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputState">State</label>
+                <select id="inputState countrySelect" class="form-control" onchange="makeSubmenu(this.value)"
+                    name="country" [(ngModel)]="emp.country">
+                    <!-- <select id="inputState countrySelect" class="form-control" onchange="makeSubmenu()" name="country"> -->
+                    <option selected>Choose...</option>
+                    <option> Bangladesh</option>
+                    <option> Canada</option>
+                    <option> China</option>
+                    <option> France</option>
+                    <option> India</option>
+                    <option> Japan</option>
+                    <option> Nepal</option>
+                    <option> SriLanka</option>
+                    <option> UK</option>
+                    <option> USA</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="citySelect">City</label>
+                <select id="citySelect" class="form-control" [disabled]="false" onchange="updateCountry()" name="city"
+                    [(ngModel)]="emp.city ">
+                    <option value="" disabled selected>--Select City--</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-2" style="margin-top: 35px;">
+                <div class="form-check form-check-inline">
+                    <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="male"> -->
+                    <input class="form-check-input" type="checkbox" id="otherCity" onclick="changeValue1()"
+                        value="nonSelected">
+                    <label class="form-check-label" for="otherCity">Other City</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-4" id="otherCityContainer" hidden="true">
+                <label for="OtherCityName">Enter City name</label>
+                <input type="text" class="form-control" id="OtherCityName" onchange="updateData()"
+                    placeholder="City Name" name="city" [(ngModel)]="emp.city ">
+            </div>
+        </div>
+        <h3 style="margin-top: 35px;">Skills</h3>
+        <mat-divider></mat-divider>
+
+        <div class="form-check form-check-inline col-md-3 mt10">
+            <input class="form-check-input " type="checkbox" id="AWS" value="nonSelected" onclick="changeValue(this.id)"
+                name="aws" [(ngModel)]="emp.aws">
+            <label class="form-check-label " for="AWS">AWS</label>
+        </div>
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input " type="checkbox" id="DevOps" value="nonSelected"
+                onclick="changeValue(this.id)" name="devOps" [(ngModel)]="emp.devOps">
+            <label class="form-check-label" for="DevOps">DevOps</label>
+        </div>
+        <div class="form-check form-check-inline col-md-3 full-width">
+            <input class="form-check-input " type="checkbox" id="fullStackDeveloper" value="nonSelected"
+                onclick="changeValue(this.id)" name="fullStackDeveloper" [(ngModel)]="emp.fullStackDeveloper ">
+            <label class="form-check-label" for="fullStackDeveloper">Full Stack Developer</label>
+        </div>
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input" type="checkbox" id="Middleware" value="nonSelected"
+                onclick="changeValue(this.id)" name="middleware" [(ngModel)]="emp.middleware ">
+            <label class="form-check-label" for="Middleware">Middleware</label>
+        </div>
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input" type="checkbox" id="qaAutomation" value="nonSelected"
+                onclick="changeValue(this.id)" name="qaAutomation" [(ngModel)]="emp.qaAutomation  ">
+            <label class="form-check-label" for="qaAutomation">QA-Automation</label>
+        </div>
+        <div class="form-check form-check-inline col-md-3 mb10">
+            <input class="form-check-input" type="checkbox" id="WebServices" value="nonSelected"
+                onclick="changeValue(this.id)" name="webServices" [(ngModel)]="emp.webServices ">
+            <label class="form-check-label" for="WebServices">WebServices</label>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div style="margin: 10px;" class="row justify-content-end">
+
+            <button type="submit" class="btn btn-success mr10">Update</button>
+            <button type="button" class="btn btn-danger ml10" routerLink="/dashboard/search">Cancel</button>
+        </div>
+
+    </form>
+
+</mat-card>

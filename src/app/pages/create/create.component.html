@@ -1,0 +1,177 @@
+<mat-card>
+
+    <!--  firstName, lastName, email, address, country, city, gender;
+
+	dateOfBirth;
+	mobile;
+	
+	aws,devOps, fullStackDeveloper, middleware, webServices, qaAutomation; -->
+
+    <h3 class="bold">Employee Details</h3>
+
+    <!-- {{ employee | json }}  -->
+
+    <mat-divider></mat-divider>
+
+    <!-- form for add employee -->
+    <form (ngSubmit)="createEmployee()">
+        <div class="form-row mt40">
+            <!-- input field for first name -->
+            <div class="form-group col-md-4 bold">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                    [(ngModel)]="employee.firstName" required>
+            </div>
+            <!-- input field for last name -->
+            <div class="form-group col-md-4 bold">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Last Name"
+                    [(ngModel)]="employee.lastName ">
+            </div>
+            <!-- input field for email -->
+            <div class="form-group col-md-4 bold">
+                <label for="inputEmail4 bold">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" name="email" required placeholder="Email"
+                    [(ngModel)]="employee.email">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!-- input field for Mobile Number -->
+            <div class="form-group col-md-4 bold">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="text" class="form-control" id="mobileNumber" name="mobile" placeholder="Mobile Number"
+                    [(ngModel)]="employee.mobile" required>
+            </div>
+            <!-- input field for Date of Birth -->
+            <div class="form-group col-md-4">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dateOfBirth" placeholder="dd/mm/yyyy"
+                    [(ngModel)]="employee.dateOfBirth ">
+            </div>
+            <!-- input for Gender -->
+            <div class="form-group col-md-4">
+                <label for="gender" class="mr10" style="margin-top: 35px;"> Gender : </label>
+                <div class="form-check form-check-inline" id="gender">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male"
+                        [(ngModel)]="employee.gender">
+                    <label class="form-check-label" for="inlineRadio1" style="margin-top: 5px;">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female"
+                        [(ngModel)]="employee.gender ">
+                    <label class="form-check-label" for="inlineRadio2" style="margin-top: 5px;">Female</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- input field for address -->
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <!-- <input type="textarea" class="form-control" id="inputAddress" placeholder="1234 Main St"> -->
+            <textarea type="textarea" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St"
+                [(ngModel)]="employee.address "></textarea>
+        </div>
+
+        <!-- dropdown select list for countries -->
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputState">Country</label>
+                <select id="inputState countrySelect" class="form-control" onchange="makeSubmenu(this.value)"
+                    name="country" [(ngModel)]="employee.country" required>
+                    <!-- <select id="inputState countrySelect" class="form-control" onchange="makeSubmenu()" name="country"> -->
+                    <!-- options for county -->
+                    <option selected>Choose...</option>
+                    <option> Bangladesh</option>
+                    <option> Canada</option>
+                    <option> China</option>
+                    <option> France</option>
+                    <option> India</option>
+                    <option> Japan</option>
+                    <option> Nepal</option>
+                    <option> SriLanka</option>
+                    <option> UK</option>
+                    <option> USA</option>
+                </select>
+            </div>
+            <!-- dropdoun list for city -->
+            <div class="form-group col-md-3">
+                <label for="citySelect">City</label>
+                <select id="citySelect" class="form-control" [disabled]="false" onchange="updateCountry()" name="city"
+                    [(ngModel)]="employee.city ">
+                    <option value="" disabled selected>--Select City--</option>
+                </select>
+            </div>
+
+            <!-- checkbox for othercity -->
+            <div class="form-group col-md-2" style="margin-top: 35px;">
+                <div class="form-check form-check-inline">
+                    <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="male"> -->
+                    <input class="form-check-input" type="checkbox" id="otherCity" onclick="changeValue1()"
+                        value="nonSelected">
+                    <label class="form-check-label" for="otherCity">Other City</label>
+                </div>
+            </div>
+
+            <!-- input field for other city -->
+            <div class="form-group col-md-4" id="otherCityContainer" hidden="true">
+                <label for="OtherCityName">Enter City name</label>
+                <input type="text" class="form-control" id="OtherCityName" onchange="updateData()"
+                    placeholder="City Name" name="city" [(ngModel)]="employee.city ">
+            </div>
+        </div>
+
+        <!-- checkbox input for skills -->
+        <h3 style="margin-top: 35px;">Skills</h3>
+        <mat-divider></mat-divider>
+
+        <!-- input field for AWS -->
+        <div class="form-check form-check-inline col-md-3 mt10">
+            <input class="form-check-input " type="checkbox" id="AWS" value="nonSelected" onclick="changeValue(this.id)"
+                name="aws" [(ngModel)]="employee.aws">
+            <label class="form-check-label " for="AWS">AWS</label>
+        </div>
+        <!-- input field for DevOps -->
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input " type="checkbox" id="DevOps" value="nonSelected"
+                onclick="changeValue(this.id)" name="devOps" [(ngModel)]="employee.devOps">
+            <label class="form-check-label" for="DevOps">DevOps</label>
+        </div>
+        <!-- input field for Full stack developer -->
+        <div class="form-check form-check-inline col-md-3 full-width">
+            <input class="form-check-input " type="checkbox" id="fullStackDeveloper" value="nonSelected"
+                onclick="changeValue(this.id)" name="fullStackDeveloper" [(ngModel)]="employee.fullStackDeveloper ">
+            <label class="form-check-label" for="fullStackDeveloper">Full Stack Developer</label>
+        </div>
+        <!-- input field for Middleware -->
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input" type="checkbox" id="Middleware" value="nonSelected"
+                onclick="changeValue(this.id)" name="middleware" [(ngModel)]="employee.middleware ">
+            <label class="form-check-label" for="Middleware">Middleware</label>
+        </div>
+        <!-- input field for qaAutomation -->
+        <div class="form-check form-check-inline col-md-3">
+            <input class="form-check-input" type="checkbox" id="qaAutomation" value="nonSelected"
+                onclick="changeValue(this.id)" name="qaAutomation" [(ngModel)]="employee.qaAutomation  ">
+            <label class="form-check-label" for="qaAutomation">QA-Automation</label>
+        </div>
+        <!-- input field for webServices -->
+        <div class="form-check form-check-inline col-md-3 mb10">
+            <input class="form-check-input" type="checkbox" id="WebServices" value="nonSelected"
+                onclick="changeValue(this.id)" name="webServices" [(ngModel)]="employee.webServices ">
+            <label class="form-check-label" for="WebServices">WebServices</label>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div style="margin: 10px;" class="row justify-content-end">
+            <!-- button for Save -->
+            <button type="submit" class="btn btn-success mr10">Save</button>
+            <!-- button for cancel -->
+            <button type="button" class="btn btn-danger ml10" routerLink="/dashboard/search">Cancel</button>
+        </div>
+
+    </form>
+
+
+</mat-card>

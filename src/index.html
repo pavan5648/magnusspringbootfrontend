@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JalaMagnusFrontEnd</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+  <!-- linkikng fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- linking bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body class="mat-typography">
+
+  <!-- app root => here all conponant displays  -->
+  <app-root></app-root>
+
+  <script type="text/javascript">
+    // array of countries and their cities
+    var citiesByCountry = {
+      Bangladesh: ["Bogra",
+        "Brahmanbaria",
+        "Cox's Bazar",
+        "Faridpur",
+        "Jessore",
+        "Kushtia",
+        "Nawabganj",
+        "Sirajganj",
+        "Tangail"],
+      Canada: ["Brant",
+        "Burlington",
+        "Cornwall",
+        "Hamilton",
+        "North Bay",
+        "Ottawa",
+        "Sarnia",
+        "Toronto"],
+      China: ["Beijing",
+        "Bozhou",
+        "Chizhou",
+        "Hong Kong",
+        "Jieshou",
+        "Longhai",
+        "Longnan",
+        "Macau",
+        "Shanghai",
+        "Suzhou",
+        "Yumen"],
+      France: ["Bron",
+        "Castres",
+        "Lyon",
+        "Marseille",
+        "Nantes",
+        "Paris",
+        "Poissy",
+        "Reims",
+        "Roanne"],
+      India: ["Ahmedabad",
+        "Bhopal",
+        "Chennai",
+        "Delhi",
+        "Hyderabad",
+        "Kolkata",
+        "Mumbai",
+        "Pune",
+        "Rajkot",
+        "Surat"
+      ],
+      Japan: [
+        "Hiroshima",
+        "Kasugai",
+        "Maebashi",
+        "Midori",
+        "Nagasaki",
+        "Nagoya",
+        "Takasaki",
+        "Yamagata",
+        "Yatomi"],
+      Nepal: ["Bharatpur",
+        "Chandrapur",
+        "Damak",
+        "Godawari",
+        "Itahari",
+        "Janakpur",
+        "Kathmandu",
+        "Lalitpur",
+        "Nepalgunj",
+        "Siraha",
+        "Tikapur",
+        "Tokha"],
+      SriLanka: ["Colombo",
+        "Dambulla",
+        "Galle",
+        "Kalmunai",
+        "Kandy",
+        "Ratnapura",
+        "Vavuniya"],
+      UK: ["Bangor",
+        "Derby",
+        "Durham",
+        "Nottingham",
+        "Perth",
+        "Sunderland"],
+      USA: ["California",
+        "Chicago",
+        "Florida",
+        "Hawaii",
+        "New Jersey",
+        "New York",
+        "Texas",
+        "Washington"],
+
+    }
+
+    // creating sub menu based on country selection
+    function makeSubmenu(value) {
+      // function makeSubmenu() {
+      if (value.length == 0) document.getElementById("citySelect").innerHTML = "<option></option>";
+      else {
+        var citiesOptions = "";
+        for (cityId in citiesByCountry[value]) {
+          citiesOptions += "<option>" + citiesByCountry[value][cityId] + "</option>";
+        }
+        document.getElementById("citySelect").innerHTML = citiesOptions;
+      }
+    }
+
+// displaying values 
+    function displaySelected() {
+      var country = document.getElementById("countrySelect").value;
+      var city = document.getElementById("citySelect").value;
+      alert(country + "\n" + city);
+    }
+
+    // reseting selected values
+    function resetSelection() {
+      document.getElementById("countrySelect").selectedIndex = 0;
+      document.getElementById("citySelect").selectedIndex = 0;
+    }
+
+    // changing vaalue of citybased on other city 
+    function changeValue1(inp) {
+      let data1 = document.getElementById('otherCity').value;
+      // changing nonSelected to selected
+      if (data1 == "nonSelected") {
+        document.getElementById("otherCity").value = "selected";
+        document.getElementById('citySelect').disabled = true;
+        console.log(document.getElementById('citySelect'))
+        document.getElementById('otherCityContainer').hidden = false;
+        console.log("changed nonSelected to selected");
+      }
+      // changing selected to non selected
+      if (data1 == "selected") {
+        document.getElementById("otherCity").value = "nonSelected";
+        document.getElementById('citySelect').disabled = false;
+        document.getElementById('otherCityContainer').hidden = true;
+        console.log("chaned selected to nonSelected");
+
+      }
+      // alert("clicked")
+    }
+
+    // updating city name of other city to city
+    function updateData() {
+      let otherCity = document.getElementById('OtherCityName').value;
+      console.log(otherCity);
+      let City = document.getElementById('citySelect').value = otherCity;
+      let country = document.getElementsByName('country');
+      console.log(country[0].value)
+      document.getElementsByName('country').value = country[0].value
+      console.log(City);
+      console.log(document.getElementById('OtherCityName'));
+
+      let countryn = document.getElementsByName('country');
+      console.log(countryn.value)
+
+    }
+
+
+    // updating country
+    function updateCountry() {
+      let country = document.getElementsByName('country');
+      console.log(country.value)
+      document.getElementsByName('country').value = country[0].value;
+      let countryn = document.getElementsByName('country');
+      console.log(countryn.value)
+    }
+
+
+
+    // changing skills value
+    function changeValue(inp) {
+      console.log(inp);
+      let data1 = document.getElementById(inp).value;
+      if (data1 == "nonSelected") {
+        document.getElementById(inp).value = "selected";
+        console.log("changed nonSelected to selected");
+      }
+      if (data1 == "selected") {
+        document.getElementById(inp).value = "nonSelected";
+        console.log("chaned selected to nonSelected");
+
+      }
+      // alert("clicked")
+
+    }
+
+
+
+
+  </script>
+
+
+  <!-- linking jquery and bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

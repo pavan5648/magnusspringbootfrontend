@@ -1,0 +1,49 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+
+                <div class="login-logo">
+                    <h1 class="mt20 heading">JALA Academy</h1>
+                    <h2 class="f14"> Login Credentials</h2>
+                    <h5 class="f14"> Email : training@jalaacademy.com </h5>
+                    <h5 class="f14"> Password : jobprogram </h5>
+                    <h5 style="background-color:Yellow;"><b> Learn Everything on Real-Time Scenarios </b></h5>
+                </div>
+
+                <mat-card>
+                    <div class="container text-center">
+                    </div>
+
+                    <h1 class="text-center">Sign in</h1>
+
+                    <form (ngSubmit)="formSubmit()">
+                        <!-- username field -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>User Name</mat-label>
+                            <input name="username" [(ngModel)]="loginData.username" required matInput
+                                placeholder="Enter here" />
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-hint>Valid User Name</mat-hint>
+                        </mat-form-field>
+
+                        <!-- password field  -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>User Password</mat-label>
+                            <input [(ngModel)]="loginData.password" name="password" type="password" required matInput
+                                placeholder="Enter here" />
+                            <mat-icon matSuffix>password</mat-icon>
+                        </mat-form-field>
+
+                        <!-- submit button -->
+                        <div class="container text-center mb20">
+                            <button mat-raised-button color="primary" type="submit">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
